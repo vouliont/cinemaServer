@@ -5,6 +5,7 @@ headers: [
   "X-App-Token: "ulknfao[b81jbAdaio15Ha...fhio1"
 ]
 ```
+<br></br>
 <b>Запрос на добавление пользователя:</b>
 ```
 POST /v1/sighup
@@ -24,7 +25,7 @@ POST /v1/sighup
   "message": "User has been added"
 }
 ```
-
+<br></br>
 <b>Запрос на вход:</b>
 ```
 POST /v1/signin
@@ -44,7 +45,7 @@ POST /v1/signin
   "token": "ulknfao[b81jbAdaio15Ha...fhio1" // if success
 }
 ```
-
+<br></br>
 <b>Запрос на получение данных пользователя:</b>
 ```
 GET /v1/getuserdata
@@ -65,7 +66,7 @@ GET /v1/getuserdata
   "city": "Винница"
 }
 ```
-
+<br></br>
 <b>Запрос на получение кинотеатров:</b>
 ```
 GET /v1/cinemas
@@ -103,7 +104,7 @@ GET /v1/cinemas
   }
 ]
 ```
-
+<br></br>
 <b>Запрос на получение фильмов:</b>
 ```
 GET /v1/films

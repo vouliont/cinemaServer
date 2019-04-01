@@ -115,7 +115,8 @@ GET /v1/films
   "genres": [
     "horror",
     "action"
-  ]
+  ],
+  "partOfDay": "morning" // can be null, if null then get films for all day
 }
 ```
 ```
@@ -147,3 +148,41 @@ GET /v1/films
   }
 ]
 ```
+<br></br>
+<b>Запрос на получение сеансов:</b>
+```
+GET /v1/sessions
+```
+```
+{
+  "cinema": "92", // can be null, if null then get sessions for all cinemas
+  "city": "Винница",
+  "film": "12", // film id
+  "partOfDay": "morning" // other variant: "afternoon", "evening"
+}
+```
+```
++ headers
+```
+<i>Ответ:</i>
+```
+[
+  {
+    "cinema": "92", // cinema id
+    "startTime": "15011341",
+    "endTime": 15012259",
+    "hallNumber": "12",
+    "cost": "75",
+    "format": "3d"
+  },
+  {
+    "cinema": "92",
+    "startTime": "15055991",
+    "endTime": 15056902",
+    "hallNumber": "3",
+    "cost": "110",
+    "format": "iMax"
+  }
+]
+```
+<br></br>

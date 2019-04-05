@@ -41,7 +41,6 @@ POST /v1/signin
 {
   "success": "true",
   "message": "User has entered",
-  "email": "vlad@test.ru", // if success
   "token": "ulknfao[b81jbAdaio15Ha...fhio1" // if success
 }
 ```
@@ -63,7 +62,6 @@ GET /v1/getuserdata
 {
   "success": "true",
   "name": "vlad",
-  "email": "vlad@test.ru",
   "city": "Винница"
 }
 ```

@@ -61,6 +61,7 @@ GET /v1/getuserdata
 <i>Ответ:</i>
 ```
 {
+  "success": "true",
   "name": "vlad",
   "email": "vlad@test.ru",
   "city": "Винница"

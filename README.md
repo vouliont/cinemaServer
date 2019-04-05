@@ -62,7 +62,8 @@ GET /v1/getuserdata
 {
   "success": "true",
   "name": "vlad",
-  "city": "Винница"
+  "city": "Винница",
+  "accessLevel": "0"
 }
 ```
 <br></br>

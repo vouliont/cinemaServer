@@ -50,12 +50,7 @@ POST /v1/signin
 GET /v1/getuserdata
 ```
 ```
-{
-  "email": "vlad@test.ru"
-}
-```
-```
-+ headers
+headers
 ```
 <i>Ответ:</i>
 ```
@@ -86,22 +81,25 @@ GET /v1/cinemas
 <i>Ответ:</i>
 ```
 [
-  {
-    "name": "Smart Cinema",
-    "address": "Соборна 13",
-    "formats": [
-      "2d",
-      "3d"
-    ]
-  },
-  {
-    "name": "Мир",
-    "address": "Келецкая 112",
-    "formats": [
-      "2d",
-      "3d"
-    ]
-  }
+  "success": true,
+  "cinemas": [
+    {
+      "name": "Smart Cinema",
+      "address": "Соборна 13",
+      "formats": [
+        "2d",
+        "3d"
+      ]
+    },
+    {
+      "name": "Мир",
+      "address": "Келецкая 112",
+      "formats": [
+        "2d",
+        "3d"
+      ]
+    }
+  ]
 ]
 ```
 <br></br>
@@ -125,27 +123,30 @@ GET /v1/films
 <i>Ответ:</i>
 ```
 [
-  {
-    "name": "Мы",
-    "genres": [
-      "horror"
-    ],
-    "duration": "95",
-    "formats": [
-      "2d"
-    ]
-  },
-  {
-    "name": "Дамбо",
-    "genre": [
-      "action"
-    ],
-    "duration": "103",
-    "formats": [
-      "2d",
-      "3d"
-    ]
-  }
+  "success": "true",
+  "films": [
+    {
+      "name": "Мы",
+      "genres": [
+        "horror"
+      ],
+      "duration": "95",
+      "formats": [
+        "2d"
+      ]
+    },
+    {
+      "name": "Дамбо",
+      "genre": [
+        "action"
+      ],
+      "duration": "103",
+      "formats": [
+        "2d",
+        "3d"
+      ]
+    }
+  ]
 ]
 ```
 <br></br>
@@ -167,22 +168,25 @@ GET /v1/sessions
 <i>Ответ:</i>
 ```
 [
-  {
-    "cinema": "92", // cinema id
-    "startTime": "15011341",
-    "endTime": 15012259",
-    "hallNumber": "12",
-    "cost": "75",
-    "format": "3d"
-  },
-  {
-    "cinema": "92",
-    "startTime": "15055991",
-    "endTime": 15056902",
-    "hallNumber": "3",
-    "cost": "110",
-    "format": "iMax"
-  }
+  "success": "true",
+  "sessions": [
+    {
+      "cinema": "92", // cinema id
+      "startTime": "15011341",
+      "endTime": 15012259",
+      "hallNumber": "12",
+      "cost": "75",
+      "format": "3d"
+    },
+    {
+      "cinema": "92",
+      "startTime": "15055991",
+      "endTime": 15056902",
+      "hallNumber": "3",
+      "cost": "110",
+      "format": "iMax"
+    }
+  ]
 ]
 ```
 <br></br>

@@ -1,19 +1,9 @@
-const checkIsTokenValid = require('../Helpers/Validator').checkIsTokenValid;
 const updateUserToken = require('./ExtraHandlers').updateUserToken;
 const checkIsUserEntered = require('./ExtraHandlers').checkIsUserEntered;
 const dbConnection = require('../index');
 
 function getUserDataHandler(req, res) {
   const userToken = req.header('X-Session-Token');
-
-  const isValid = checkIsTokenValid(userToken);
-  if (!isValid) {
-    res
-      .type('json')
-      .status(415)
-      .json({ success: false });
-    return;
-  }
 
   checkIsUserEntered(userToken, res, function(userEmail) {
     const getUserDataQuery = `SELECT name, city, accessLevel FROM users WHERE email = "${userEmail}"`;

@@ -1,5 +1,6 @@
 const getTimeOfTokenLife = require('../SqlConfig').getTimeOfTokenLife;
 const dbConnection = require('../index');
+const checkIsTokenValid = require('../Helpers/Validator').checkIsTokenValid;
 
 function updateUserToken(userEmail) {
   const endTime = Math.floor(Date.now() / 1000) + getTimeOfTokenLife();
@@ -13,6 +14,15 @@ function removeUserToken(userEmail) {
 }
 
 function checkIsUserEntered(userToken, res, completionHandler) {
+  const isValid = checkIsTokenValid(userToken);
+  if (!isValid) {
+    res
+      .type('json')
+      .status(415)
+      .json({ success: false });
+    return;
+  }
+
   const getUserWithTokenQuery = `SELECT email, endTime FROM user_token WHERE token = "${userToken}"`;
   dbConnection.query(getUserWithTokenQuery, function(error, result) {
     if (error) {

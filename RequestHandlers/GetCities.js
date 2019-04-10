@@ -13,7 +13,7 @@ function getCities(req, res) {
 
     let cities = [];
     for (let i = 0; i < result.length; i++) {
-      cities.append(result[i]);
+      cities.push(result[i]["city"]);
     }
 
     res

@@ -32,3 +32,4 @@ app.post(getUrls().signin, AllRequestHandlers.signInHandler);
 app.get(getUrls().getuserdata, AllRequestHandlers.getUserDataHandler);
 
 app.get(getUrls().cities, AllRequestHandlers.getCities);
+app.get(getUrls().cinemas, AllRequestHandlers.getCinemas);

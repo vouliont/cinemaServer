@@ -1,0 +1,25 @@
+{
+  "name": "cinemaserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vouliont/cinemaServer.git"
+  },
+  "author": "Vlad Poraiko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vouliont/cinemaServer/issues"
+  },
+  "homepage": "https://github.com/vouliont/cinemaServer#readme",
+  "devDependencies": {
+    "body-parser": "^1.18.3",
+    "email-validator": "^2.0.4",
+    "express": "^4.16.4",
+    "mysql": "^2.16.0"
+  }
+}

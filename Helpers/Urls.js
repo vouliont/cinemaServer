@@ -5,7 +5,8 @@ const urls = {
   getuserdata: `${mainUrl}/getuserdata`,
   cities: `${mainUrl}/cities`,
   cinemas: `${mainUrl}/cinemas`,
-  films: `${mainUrl}/films`
+  films: `${mainUrl}/films`,
+  formats: `${mainUrl}/formats`
 };
 
 function getUrls() {

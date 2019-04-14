@@ -1,9 +1,9 @@
 const dbConnection = require('../index').dbConnection;
 const sqlTables = require('../SqlConfig').getTables();
 
-function getCities(req, res) {
-  const getCitiesQuery = `SELECT * FROM ${sqlTables.city}`;
-  dbConnection.query(getCitiesQuery, function(error, result) {
+function getFormats(req, res) {
+  const getFormatsQuery = `SELECT * FROM ${sqlTables.format}`;
+  dbConnection.query(getFormatsQuery, function(error, result) {
     if (error) {
       res
         .type('json')
@@ -15,8 +15,8 @@ function getCities(req, res) {
     res
       .type('json')
       .status(200)
-      .json({ success: true, cities: result });
+      .json({ success: true, formats: result });
   });
 }
 
-module.exports = getCities;
+module.exports = getFormats;

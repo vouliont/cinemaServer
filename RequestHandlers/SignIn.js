@@ -1,8 +1,9 @@
 const checkIsSignInDataValid = require('../Helpers/Validator').checkIsSignInDataValid;
-const getSecretKey = require('../SqlConfig').getSecretKey;
+const secretKey = require('../SqlConfig').getSecretKey();
 const getTimeOfTokenLife = require('../SqlConfig').getTimeOfTokenLife;
 const crypto = require('crypto');
-const dbConnection = require('../index');
+const dbConnection = require('../index').dbConnection;
+const sqlTables = require('../SqlConfig').getTables();
 
 function signInHandler(req, res) {
   const userEmail = req.body.email;
@@ -17,7 +18,7 @@ function signInHandler(req, res) {
     return;
   }
 
-  const findUserWithEmailQuery = `SELECT password FROM users WHERE email = "${userEmail}"`;
+  const findUserWithEmailQuery = `SELECT password FROM ${sqlTables.user} WHERE email = "${userEmail}"`;
   dbConnection.query(findUserWithEmailQuery, function(error, result) {
     if (error) {
       res
@@ -49,7 +50,7 @@ function signInHandler(req, res) {
     }
 
     // remove old record of info about user session if needed
-    const checkIsUserWasEnteredQuery = `SELECT COUNT(*) FROM user_token WHERE email = "${userEmail}"`;
+    const checkIsUserWasEnteredQuery = `SELECT COUNT(*) AS userCount FROM ${sqlTables.userToken} WHERE email = "${userEmail}"`;
     dbConnection.query(checkIsUserWasEnteredQuery, function(error, result) {
       if (error) {
         res
@@ -62,16 +63,16 @@ function signInHandler(req, res) {
       // user is being entered (create/update token for him)
       const userToken = crypto
         .createHash('sha512')
-        .update(`${userEmail}${getSecretKey()}${Date.now()}`)
+        .update(`${userEmail}${secretKey}${Date.now()}`)
         .digest('hex');
 
       const endTime = Math.floor(Date.now() / 1000) + getTimeOfTokenLife();
 
-      const isUserWasEntered = result[0]['COUNT(*)'] != 0;
+      const isUserWasEntered = result[0]['userCount'] != 0;
       const addTokenForUserQuery = isUserWasEntered ?
-        `UPDATE user_token SET token = "${userToken}", endTime = ${endTime} WHERE email = "${userEmail}"`
+        `UPDATE ${sqlTables.userToken} SET token = "${userToken}", endTime = ${endTime} WHERE email = "${userEmail}"`
         :
-        `INSERT INTO user_token (email, token, endTime) VALUES ("${userEmail}", "${userToken}", ${endTime})`;
+        `INSERT INTO ${sqlTables.userToken} (email, token, endTime) VALUES ("${userEmail}", "${userToken}", ${endTime})`;
 
       dbConnection.query(addTokenForUserQuery, function(error) {
         if (error) {

@@ -1,13 +1,14 @@
 const checkIsSignUpDataValid = require('../Helpers/Validator').checkIsSignUpDataValid;
 const crypto = require('crypto');
 const mysql = require('mysql');
-const dbConnection = require('../index');
+const dbConnection = require('../index').dbConnection;
+const sqlTables = require('../SqlConfig').getTables();
 
 function signUpHandler(req, res) {
   const userEmail = req.body.email;
   const userName = req.body.name;
   const userPassword = req.body.password;
-  const userCity = req.body.city;
+  const userCityId = req.body.cityId;
 
   const isDataValid = checkIsSignUpDataValid(userEmail, userName, userPassword);
   if (!isDataValid.isValid) {
@@ -18,7 +19,7 @@ function signUpHandler(req, res) {
     return;
   }
 
-  const findUserWithEmailQuery = `SELECT COUNT(*) FROM users WHERE email = "${userEmail}"`;
+  const findUserWithEmailQuery = `SELECT COUNT(*) AS userCount FROM ${sqlTables.user} WHERE email = "${userEmail}"`;
   dbConnection.query(findUserWithEmailQuery, function(error, result) {
     if (error) {
       res
@@ -28,7 +29,7 @@ function signUpHandler(req, res) {
       return;
     }
 
-    const isUserDefined = result[0]['COUNT(*)'] != 0;
+    const isUserDefined = result[0]['userCount'] != 0;
     if (isUserDefined) {
       res
         .type('json')
@@ -42,8 +43,8 @@ function signUpHandler(req, res) {
       .createHash('sha256')
       .update(userPassword, 'utf8')
       .digest('hex');
-    const createUserQuery = `INSERT INTO users (name, email, password, city) VALUES ("${userName}", "${userEmail}", "${hashPassword}", "${userCity}")`;
 
+    const createUserQuery = `INSERT INTO ${sqlTables.user} (name, email, password, cityId) VALUES ("${userName}", "${userEmail}", "${hashPassword}", ${userCityId})`;
     dbConnection.query(createUserQuery, function(error, result) {
       if (error) {
         res

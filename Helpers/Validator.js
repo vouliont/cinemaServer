@@ -8,14 +8,14 @@ function checkIsSignUpDataValid(email, name, password) {
     };
   }
 
-  if (name.length < 2 || name.length > 30) {
+  if (name.length < 2 || name.length > 64) {
     return {
       isValid: false,
       message: 'Имя пользователя невалидно!'
     };
   }
 
-  if (password.length < 6 || password.length > 50) {
+  if (password.length < 6 || password.length > 64) {
     return {
       isValid: false,
       message: 'Пароль пользователя невалидный!'
@@ -35,7 +35,7 @@ function checkIsSignInDataValid(email, password) {
     };
   }
 
-  if (password.length < 6 || password.length > 50) {
+  if (password.length < 6 || password.length > 64) {
     return {
       isValid: false,
       message: 'Пароль пользователя невалидный!'

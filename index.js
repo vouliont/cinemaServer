@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 
 const getSqlConfig = require('./SqlConfig').getSqlConfig;
-const getUrls = require('./Helpers/Urls').getUrls;
+const urls = require('./Helpers/Urls').getUrls();
 
 // database
 const dbConnection = mysql.createConnection(getSqlConfig());
@@ -16,7 +16,7 @@ dbConnection.connect(function(error) {
     console.log('Connection to database has successed.');
   }
 });
-module.exports = dbConnection;
+exports.dbConnection = dbConnection;
 
 const AllRequestHandlers = require('./RequestHandlers/AllRequestHandlers');
 
@@ -27,9 +27,10 @@ app.listen(80, function() {
   console.log('Server has started');
 });
 
-app.post(getUrls().signup, AllRequestHandlers.signUpHandler);
-app.post(getUrls().signin, AllRequestHandlers.signInHandler);
-app.get(getUrls().getuserdata, AllRequestHandlers.getUserDataHandler);
+app.post(urls.signup, AllRequestHandlers.signUpHandler);
+app.post(urls.signin, AllRequestHandlers.signInHandler);
+app.get(urls.getuserdata, AllRequestHandlers.getUserDataHandler);
 
-app.get(getUrls().cities, AllRequestHandlers.getCities);
-app.get(getUrls().cinemas, AllRequestHandlers.getCinemas);
+app.get(urls.cities, AllRequestHandlers.getCities);
+app.get(urls.cinemas, AllRequestHandlers.getCinemas);
+app.get(urls.formats, AllRequestHandlers.getFormats);

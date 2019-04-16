@@ -6,7 +6,10 @@ const urls = {
   cities: `${mainUrl}/cities`,
   cinemas: `${mainUrl}/cinemas`,
   films: `${mainUrl}/films`,
-  formats: `${mainUrl}/formats`
+  formats: `${mainUrl}/formats`,
+  genres: `${mainUrl}/genres`,
+  film: `${mainUrl}/film`,
+  sessions: `${mainUrl}/sessions`
 };
 
 function getUrls() {

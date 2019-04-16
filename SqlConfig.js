@@ -21,7 +21,9 @@ const tables = {
   filmGenre: 'film_genre',
   filmFormat: 'film_format',
   genre: 'genre',
-  filmActor: 'film_actor'
+  filmActor: 'film_actor',
+  session: 'session',
+  cinemaFilm: 'cinema_film'
 }
 
 function getSqlConfig() {

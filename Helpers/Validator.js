@@ -48,7 +48,7 @@ function checkIsSignInDataValid(email, password) {
 }
 
 function checkIsTokenValid(token) {
-  if (token.length !== 128) {
+  if (typeof token === "string" && token.length !== 128) {
     return false;
   }
 

@@ -34,3 +34,7 @@ app.get(urls.getuserdata, AllRequestHandlers.getUserDataHandler);
 app.get(urls.cities, AllRequestHandlers.getCities);
 app.get(urls.cinemas, AllRequestHandlers.getCinemas);
 app.get(urls.formats, AllRequestHandlers.getFormats);
+app.get(urls.films, AllRequestHandlers.getFilms);
+app.get(urls.genres, AllRequestHandlers.getGenres);
+app.get(urls.film, AllRequestHandlers.getFilm);
+app.get(urls.sessions, AllRequestHandlers.getSessions);
